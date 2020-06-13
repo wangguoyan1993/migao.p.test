@@ -7,26 +7,31 @@
   "build": {
     "appId": "miga.demo.app",
     "mac": {
-      "target": ["dmg", "zip"]
+      "target": [
+        "dmg",
+        "zip"
+      ]
     },
     "win": {
-      "target": ["nsis", "zip"]
+      "target": [
+        "nsis",
+        "zip"
+      ]
     }
   },
   "scripts": {
-    "debug": "gulp build && yarn electron .",
+    "debug": "gulp build && electron .",
     "package_win_64": "yarn electron-packager ./ myapp --out ./OutApp --win --overwrite --x64"
   },
   "dependencies": {
+    "axios": "^0.19.2"
+  },
+  "devDependencies": {
     "@babel/core": "^7.10.2",
-    "@types/electron": "^1.6.10",
+    "electron-packager": "^14.2.1",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.5"
-  },
-  "devDependencies": {
-    "electron": "^9.0.3",
-    "electron-packager": "^14.2.1"
   }
 }
