@@ -28,6 +28,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-typescript": "^7.10.1",
+    "babel-preset-minify": "^0.5.1",
+    "del": "^5.1.0",
     "electron-packager": "^14.2.1",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
