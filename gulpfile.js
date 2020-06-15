@@ -18,7 +18,6 @@ const ROOT_PATH = path.resolve(__dirname);
 // 删除旧的编译结果
 gulp.task('del_old_dist', gulp.series((callback) => {
     let old_dist = path.resolve(__dirname, './dist/');
-    // if(fs.existsSync(old_dist)) fs.rmdirSync(old_dist, {recursive: true});
     del.sync(old_dist);
     callback();
 }));
@@ -28,5 +27,10 @@ gulp.task('build', gulp.series(['del_old_dist'], (callback) => {
     gulp.src(`${ROOT_PATH}/src/main.ts`)
         .pipe(babel(BABEL_CONFIG))
         .pipe(gulp.dest(`${ROOT_PATH}/dist/`));
+
+    gulp.src(`${ROOT_PATH}/src/lib/*`)
+        .pipe(babel(BABEL_CONFIG))
+        .pipe(gulp.dest(`${ROOT_PATH}/dist/lib/`));
+        
     callback();
 }));
