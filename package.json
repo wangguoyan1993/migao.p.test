@@ -24,7 +24,8 @@
     "package_win_64": "yarn electron-packager ./ myapp --out ./OutApp --win --overwrite --x64"
   },
   "dependencies": {
-    "axios": "^0.19.2"
+    "axios": "^0.19.2",
+    "child_process": "^1.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
@@ -36,6 +37,7 @@
     "electron-packager": "^14.2.1",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
+    "gulp-plumber": "^1.2.1",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.5"
   }
