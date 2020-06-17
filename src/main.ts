@@ -42,16 +42,6 @@ function main() {
         console.log(process.pid);
     });
 
-    // 注册 api
-    // 重命名 Electron 提供的 require，确保jquery等框架可用
-    // win.webContents.executeJavaScript(`
-    //     if(document.readyState === "complete"){
-    //         let basePath = process.cwd();
-    //         window.JSEvent = require(basePath + '//dist//lib//index.js');
-    //         console.info('--executeJavaScript export Object --> ', window.JSEvent);
-    //     }
-    // `);
-
     win.loadURL(CONFIG.indexUrl);
 };
 

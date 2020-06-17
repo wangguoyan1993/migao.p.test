@@ -1,12 +1,18 @@
 const http = require('http');
 const hostname = 'localhost';
+const socket = require('./socket-server');
 const port = 8000;
 
+
+// 创建http服务
 const server = http.createServer((req, res) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
     res.end('Hello World!\n' + 'local-server.js');
 });
+
+// 创建socket服务
+socket(server);
 
 server.on('request', (req, res) => {
     console.log('-- 本地服务创建成功: htto://localhost:3000');
