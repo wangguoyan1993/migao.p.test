@@ -1,30 +1,31 @@
-const socketIO = require('socket.io');
-const SOCKET_PORT = 8100;
+const WebSocketServer = require('ws').Server;
 
-module.exports = (server: any) => {
-    // 创建socket服务
-    const io = socketIO(server);
+module.exports = class WSServer {
+    private wss: typeof WebSocketServer;
+    private port: number;
 
-    io.on('connection', (client: { om: (arg0: string, arg1: (data: any) => void) => void; on: (arg0: string, arg1: () => void) => void; }) => {
-        console.log(`GUI服务socket已启动: ${port}`);
+    public create() {
+        this.wss = new WebSocketServer({ port: this.port });
 
-        client.om('event', (data: any) => {
-            console.log(data);
+        this.wss.on('connection', function (ws) {
 
-            switch (data) {
-                case 'test':
-                    alert(1);
-                    console.log('test');
-                    break;
-                default:
-                    break;
-            }
+            console.log(`client connected ${this.port}`);
+
+            ws.on('message', function (message) {
+                console.log(message);
+            });
+
+            this.wss.on('close', () => {
+                console.log('WS Server Was Closed!');
+            });
         });
+    }
 
-        client.on('disconnect', () => {
-            console.log(`GUI服务socket已失去连接`);
-        });
-    });
+    public close() {
+        delete this.wss;
+    }
 
-    io.listen(8100);
+    public constructor(port: number){
+        this.port = port
+    }
 }

@@ -1,18 +1,19 @@
 const http = require('http');
 const hostname = 'localhost';
-const socket = require('./socket-server');
+const WSServer = require('./socket-server');
 const port = 8000;
 
+// 创建socket服务
+const wss = new WSServer(8100);
 
 // 创建http服务
 const server = http.createServer((req, res) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
     res.end('Hello World!\n' + 'local-server.js');
-});
 
-// 创建socket服务
-socket(server);
+    wss.create();
+});
 
 server.on('request', (req, res) => {
     console.log('-- 本地服务创建成功: htto://localhost:3000');
@@ -28,6 +29,7 @@ server.on('clientError', (err, socket) => {
 
 server.on('close', () => {
     console.log('-- 本地服务已关闭');
+    wss.close();
 });
 
 server.on('connection', () => {
@@ -36,6 +38,7 @@ server.on('connection', () => {
 
 server.on('error', (error) => {
     console.log(`-- 本地服务异常: ${error}`);
+    wss.close();
 });
 
 server.listen(port, () => {
