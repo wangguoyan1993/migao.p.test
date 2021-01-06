@@ -24,7 +24,7 @@
     "package_win_64": "yarn electron-packager ./ myapp --out ./OutApp --win --overwrite --x64"
   },
   "dependencies": {
-    "axios": "^0.19.2"
+    "axios": "^0.21.1"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
